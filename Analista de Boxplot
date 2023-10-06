@@ -1,0 +1,28 @@
+#codigo em python#
+#-----variaveis-------#
+N = int(input('qual o valor do N? '))
+print('Digite os dados: ')
+dados = [float(x) for x in input().split()]
+
+for i in range(1, N):
+  if dados[i] < dados[i - 1]:
+    print('Erro! Conjunto tem de estar em ordem crescente')
+    exit()
+
+quartil_1 = dados[round(N * 1/4) - 1]
+quartil_3 = dados[round(N * 3/4)]
+#----------UI-----------#
+if N % 2 == 0:
+  mediana = (dados[N // 2 - 1] + dados[N // 2]) / 2 
+else:
+  mediana = dados[N // 2]
+
+espaco_it = quartil_3 - quartil_1
+limite_inferior = next(dados[j] for j in range(N) if mediana - dados[j] < 1.5 * espaco_it)
+limite_superior = next(dados[-k] for k in range(1, N + 1) if dados[-k] - mediana < 1.5 * espaco_it)
+
+print("Limite inferior: {}".format(int (limite_inferior)))
+print("1º quartil: {}".format(int (quartil_1)))
+print("Mediana: {}".format(int (mediana)))
+print("3º quartil: {}".format(int (quartil_3)))
+print("Limite superior: {}".format(int (limite_superior)))
