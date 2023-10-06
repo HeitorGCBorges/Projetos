@@ -1,0 +1,30 @@
+#codigo em python#
+#---variaveis-----#
+N = int(input("Quantidade de jogadores? "))
+jogadores = []
+#----ui-------#
+for _ in range(N):
+    jogador = input("Digite os dados para cada jogador: ").split()
+    nome = jogador[0]
+    S, B, A = map(int, jogador[1:4])
+    S1, B1, A1 = map(int, jogador[4:])
+    jogadores.append((nome, S, B, A, S1, B1, A1))
+
+
+total_tentativas_saque = sum(j[1] for j in jogadores)
+total_tentativas_bloqueio = sum(j[2] for j in jogadores)
+total_tentativas_ataque = sum(j[3] for j in jogadores)
+total_pontos_saque = sum(j[4] for j in jogadores)
+total_pontos_bloqueio = sum(j[5] for j in jogadores)
+total_pontos_ataque = sum(j[6] for j in jogadores)
+percentual_saque = (total_pontos_saque / total_tentativas_saque) * 100
+percentual_bloqueio = (total_pontos_bloqueio / total_tentativas_bloqueio) * 100
+percentual_ataque = (total_pontos_ataque / total_tentativas_ataque) * 100
+
+
+print("As estatísticas do jogo são as seguintes:")
+print("Pontos de Saque: {:.2f}%".format(percentual_saque))
+print("Pontos de Bloqueio: {:.2f}%".format(percentual_bloqueio))
+print("Pontos de Ataque: {:.2f}%".format(percentual_ataque))
+
+#os dados dos jogadores para cada jogador, deve-se se ler uma linha com as seguintes informações: nome do jogador, os valores S, B e A, representam a quantidade de tentativas de saques, bloqueios e ataques; os valores S1, B1 e A1, representando o número de saques, bloqueios e ataques deste jogador que tiveram sucesso.#
